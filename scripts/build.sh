@@ -7,10 +7,6 @@ IMAGE_NAME="cpp-simple-builder"
 # 1. ビルド用コンテナイメージを作成
 docker build -t ${IMAGE_NAME} "${PROJECT_ROOT}/docker"
 
-echo "2. ビルドキャッシュをクリーンアップ中..."
-# ホスト側で安全に削除（手順1を実行済みなら成功します）
-rm -rf "${PROJECT_ROOT}/build"
-
 echo "3. コンテナ内でビルドを実行中..."
 # --user $(id -u):$(id -g) を追加してホストユーザーとして書き込む
 docker run --rm \
