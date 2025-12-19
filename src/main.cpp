@@ -3,15 +3,18 @@
 #include <ranges>
 #include <vector>
 
-int main() {
+auto main() -> int {
   using namespace features::greeting;
-  GreetingService service;
 
   // C++20 Ranges を使用した宣言的なデータ処理
-  std::vector<GreetingData> users = {{"Alice"}, {""}, {"Bob"}};
+  const std::vector<GreetingData> users = {{"Alice"}, {""}, {"Bob"}};
+
+  const auto service = GreetingService{};
 
   auto results =
-      users | std::views::transform([&](const auto &user) { return service.createMessage(user); });
+      users | std::views::transform([&](const auto &user) -> decltype(service.createMessage(user)) {
+        return service.createMessage(user);
+      });
 
   for (const auto &res : results) {
     if (res) {

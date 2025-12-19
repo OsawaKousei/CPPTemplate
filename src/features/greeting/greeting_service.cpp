@@ -2,7 +2,7 @@
 #include <fmt/core.h>
 
 namespace features::greeting {
-Result<std::string> GreetingService::createMessage(const GreetingData &data) const {
+auto GreetingService::createMessage(const GreetingData &data) const -> Result<std::string> {
   // ガード節による早期リターン
   if (data.name.empty()) {
     return tl::make_unexpected(ErrorCode::InvalidInput);

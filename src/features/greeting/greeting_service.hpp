@@ -6,6 +6,6 @@ namespace features::greeting {
 class GreetingService {
 public:
   // 状態を変更しない const メソッド
-  [[nodiscard]] Result<std::string> createMessage(const GreetingData &data) const;
+  [[nodiscard]] auto createMessage(const GreetingData &data) const -> Result<std::string>;
 };
 } // namespace features::greeting
